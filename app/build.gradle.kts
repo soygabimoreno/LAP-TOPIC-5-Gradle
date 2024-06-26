@@ -1,3 +1,5 @@
+import soy.gabimoreno.laptopic5gradle.CustomTask
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -66,4 +68,16 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+tasks.register("aaa1") {
+    doLast {
+        println("¡Muy buenas y bienvenidos a Los androides!")
+    }
+}
+tasks.register<CustomTask>("aaa2")
+afterEvaluate {
+    tasks.named("assembleDebug").configure {
+        dependsOn("aaa1", "aaa2")
+    }
 }
